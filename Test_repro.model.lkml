@@ -3,7 +3,6 @@ connection: "djthesis"
 include: "*.view.lkml"         # include all views in this project
 # include: "*.dashboard.lookml"  # include all dashboards in this project
 
-explore: gsheets1 {}
 explore: test {
   hidden: yes # IMPORTANT - keep explores hidden to avoid clutter
 }
