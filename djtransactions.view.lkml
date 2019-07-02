@@ -20,7 +20,12 @@ view: djtransactions {
 
   dimension_group: event_on {
     type: time
-    sql: PARSE_DATE("%F", ${TABLE}.event_on) ;;
+    datatype: date
+    sql:
+    --PARSE_DATE("%F",
+    ${TABLE}.event_on
+    --)
+    ;;
     timeframes: [raw, date, day_of_week, week, month, month_name, year]
   }
 
