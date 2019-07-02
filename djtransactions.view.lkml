@@ -22,9 +22,7 @@ view: djtransactions {
     type: time
     datatype: date
     sql:
-    --PARSE_DATE("%F",
     ${TABLE}.event_on
-    --)
     ;;
     timeframes: [raw, date, day_of_week, week, month, month_name, year]
   }
