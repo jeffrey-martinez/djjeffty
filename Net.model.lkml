@@ -5,6 +5,8 @@ include: "*.view.lkml"         # include all views in this project
 
 explore: folio_tpj {}
 
+explore: folio_export {}
+
 # # Select the views that should be a part of this model,
 # # and define the joins that connect them together.
 #
