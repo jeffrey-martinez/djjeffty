@@ -37,14 +37,9 @@ view: contract_responses {
     sql: ${TABLE}.Deposit_Due ;;
   }
 
-  dimension: e_mail {
+  dimension: email {
     type: string
     sql: ${TABLE}.E_mail ;;
-  }
-
-  dimension: email_address {
-    type: string
-    sql: ${TABLE}.Email_Address ;;
   }
 
   dimension: event_end_time {
@@ -117,6 +112,19 @@ view: contract_responses {
     sql: ${TABLE}.Venue_Phone ;;
   }
 
+  dimension: event_format {
+    type: string
+    description: "String version of event date"
+    sql: ${TABLE}.event_format ;;
+    hidden: yes
+  }
+
+  dimension: event_id {
+    type: string
+    sql: ${TABLE}.event_id ;;
+    hidden: yes
+  }
+
   measure: count {
     type: count
     drill_fields: [purchaser_name]
@@ -166,4 +174,9 @@ view: contract_responses {
 #   dimension: double_field_25 {
 #     type: number
 #     sql: ${TABLE}.double_field_25 ;;
+#   }
+
+#   dimension: email_address {
+#     type: string
+#     sql: ${TABLE}.Email_Address ;;
 #   }
