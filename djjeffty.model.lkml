@@ -28,6 +28,8 @@ explore: no_dupelibrary {
 
 explore: djtransactions {}
 
+explore: contract_responses {}
+
 # explore: library {
 #   join: jan_six_seventeen {
 #     type: left_outer
