@@ -121,7 +121,7 @@ view: contract_responses {
 
   dimension: event_id {
     type: string
-    sql: ${TABLE}.event_id ;;
+    sql: COALESCE(${TABLE}.event_id, CONCAT(CAST(${TABLE}.Date_of_Event AS STRING), "0"))  ;;
     hidden: yes
   }
 

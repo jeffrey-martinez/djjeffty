@@ -37,3 +37,11 @@ explore: contract_responses {}
 #     sql_on: ${library.name} = ${jan_six_seventeen.name} AND ${library.artist} = ${jan_six_seventeen.artist} ;;
 #   }
 # }
+
+
+explore: test_transactions {
+  join: test_trans_dt {
+    sql_on: 1=1 ;;
+    relationship: many_to_many
+  }
+}
