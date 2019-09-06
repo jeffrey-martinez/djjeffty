@@ -3,7 +3,7 @@ view: sequence_cal {
     sql: SELECT(DATE_ADD(DATE(CURRENT_TIMESTAMP()), INTERVAL -1* n DAY)) generic_date
       FROM UNNEST(GENERATE_ARRAY(0,DATE_DIFF(CURRENT_DATE(), DATE("2000-01-01"), DAY),1)) n
        ;;
-    sql_trigger_value: 0 ;;
+    sql_trigger_value: SELECT 0 ;;
   }
 
   measure: count {
