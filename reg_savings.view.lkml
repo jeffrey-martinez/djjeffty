@@ -1,6 +1,14 @@
 view: reg_savings {
   sql_table_name: IKYL.RegSavings ;;
 
+  parameter: goal {
+    type: number
+  }
+
+  dimension: savings_goal {
+    sql: COALESCE({% parameter goal %}, 0) ;;
+  }
+
   dimension: amount_credit {
     type: number
     sql: ${TABLE}.Amount_Credit ;;
@@ -21,7 +29,8 @@ view: reg_savings {
     sql: ${TABLE}.Check_Number ;;
   }
 
-  dimension_group: date {
+  dimension_group: trans_on {
+    label: "Transaction on"
     type: time
     timeframes: [
       raw,
@@ -54,10 +63,22 @@ view: reg_savings {
   dimension: transaction_number {
     type: string
     sql: ${TABLE}.Transaction_Number ;;
+    primary_key: yes
   }
 
   measure: count {
     type: count
     drill_fields: []
+  }
+
+  measure: avg_balance {
+    type:  average
+    sql: ${balance} ;;
+    value_format_name: usd
+    drill_fields: [balance, trans_on_date]
+  }
+
+  dimension: latest_balance {
+    sql: (SELECT a.Balance FROM ${TABLE} a WHERE Date = (SELECT min(b.Date) FROM ${TABLE} b)) ;;
   }
 }
