@@ -29,7 +29,7 @@ view: djtransactions {
 
   dimension: event_id {
     type: string
-    sql: ${TABLE}.event_on ;;
+    sql: ${TABLE}.string_field_8 ;;
   }
 
   dimension: if_deposit {
@@ -45,12 +45,20 @@ view: djtransactions {
 
   dimension_group: transaction_on {
     type: time
-    sql: PARSE_DATE("%F", ${TABLE}.transaction_on) ;;
-    timeframes: [raw, date, day_of_week, week, month, month_name, year]
+    datatype: date
+    sql: ${TABLE}.transaction_on ;;
+    timeframes: [raw, date, day_of_week, quarter_of_year, week, month, month_name, year]
   }
 
   measure: count {
     type: count
     drill_fields: [id, client_name, event_on_date]
+  }
+
+  measure: total_amount {
+    type: sum
+    sql: ${amount} ;;
+    value_format_name: usd_0
+    drill_fields: [id, client_name, amount]
   }
 }

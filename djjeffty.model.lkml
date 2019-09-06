@@ -28,7 +28,15 @@ explore: no_dupelibrary {
 
 explore: djtransactions {}
 
-explore: contract_responses {}
+explore: contract_responses {
+  join: djtransactions {
+    type: full_outer
+    relationship: one_to_many
+    sql_on: ${contract_responses.event_id} = ${djtransactions.event_id} ;;
+  }
+}
+
+explore: sequence_cal {}
 
 # explore: library {
 #   join: jan_six_seventeen {
