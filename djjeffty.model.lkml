@@ -40,7 +40,6 @@ explore: sequence_cal {
   label: "Accounts Master"
   view_label: "Master Calendar"
   join: djchecking {
-    type: inner
     view_label: "DJ Checking"
     relationship: one_to_many
     sql_on: ${djchecking.trans_on_raw} = ${sequence_cal.generic_date_raw}  ;;
@@ -51,7 +50,6 @@ explore: sequence_cal {
     sql_on: ${djsavings.trans_on_raw} = ${sequence_cal.generic_date_raw}  ;;
   }
   join: reg_checking {
-    type: inner
     view_label: "Personal Checking"
     relationship: one_to_many
     sql_on: ${reg_checking.trans_on_raw} = ${sequence_cal.generic_date_raw}  ;;
