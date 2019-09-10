@@ -55,8 +55,9 @@ view: folio_export {
   }
 
   measure: total_market_value {
-    type: max
+    type: average
     sql: ${market_value} ;;
+    value_format_name: usd
   }
 
   measure: return_from_previous_with_fee {
