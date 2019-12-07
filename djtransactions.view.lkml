@@ -27,6 +27,11 @@ view: djtransactions {
     timeframes: [raw, date, day_of_week, week, month, month_name, year]
   }
 
+  dimension: past_event {
+    type: yesno
+    sql: ${event_on_date} < CURRENT_DATE() ;;
+  }
+
   dimension: event_id {
     type: string
     sql: ${TABLE}.string_field_8 ;;
@@ -34,8 +39,23 @@ view: djtransactions {
 
   dimension: if_deposit {
     type: yesno
-    sql: CASE WHEN ${TABLE}.if_deposit = "DEP" THEN TRUE
+    sql: CASE WHEN ${TABLE}.deposit = "DEP" THEN TRUE
       ELSE FALSE END ;;
+  }
+
+  dimension: trans_type {
+    type: string
+    case: {
+      when: {
+        label: "Deposit"
+        sql: ${TABLE}.deposit = "DEP" ;;
+      }
+      when: {
+        label: "Gratuity"
+        sql: ${TABLE}.deposit = "GRAT" ;;
+      }
+      else: "Remainder"
+    }
   }
 
   dimension: transaction_on {

@@ -4,6 +4,8 @@ connection: "djthesis"
 include: "*.view"
 include: "*.dashboard"
 
+aggregate_awareness:  yes
+
 # include all the dashboards
 # include: "*.dashboard"
 week_start_day: sunday
@@ -27,10 +29,10 @@ explore: no_dupelibrary {
     }
   }
 
-explore: djtransactions {}
+# explore: djtransactions {}
 
-explore: contract_responses {
-  join: calendar {
+explore: calendar {
+  join: contract_responses{
     type: full_outer
     sql_on: ${calendar.event_id} = ${contract_responses.event_id} ;;
     relationship: one_to_one
@@ -82,10 +84,6 @@ explore: sequence_cal {
 
 
 explore: test_transactions {
-  access_filter: {
-    field: test_transactions.id
-    user_attribute: testing
-  }
   join: test_trans_dt {
     sql_on: 1=1 ;;
     relationship: many_to_many

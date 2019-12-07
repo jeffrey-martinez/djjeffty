@@ -17,7 +17,7 @@
         expression: '(to_number(${reg_savings.savings_goal})-${running_balance} +100)
           / diff_days(now(), to_date("2020"))', value_format: !!null '', value_format_name: usd,
         is_disabled: false, _kind_hint: measure, _type_hint: number}, {table_calculation: running_balance,
-        label: Running Balance, expression: "18182 # starting balance\n+sum(${savtracker.sum_deposit})",
+        label: Running Balance, expression: "19812 # starting balance\n+sum(${savtracker.sum_deposit})",
         value_format: !!null '', value_format_name: usd, _kind_hint: measure, _type_hint: number}]
     query_timezone: America/Los_Angeles
     custom_color_enabled: true
