@@ -1,84 +1,11 @@
+include: "accounts_base.view.lkml"
+
 view: reg_savings {
   sql_table_name: IKYL.RegSavings ;;
-
-  parameter: goal {
-    type: number
-  }
-
-  dimension: savings_goal {
-    sql: COALESCE({% parameter goal %}, 0) ;;
-  }
-
-  dimension: amount_credit {
-    type: number
-    sql: ${TABLE}.Amount_Credit ;;
-  }
-
-  dimension: amount_debit {
-    type: number
-    sql: ${TABLE}.Amount_Debit ;;
-  }
-
-  dimension: balance {
-    type: number
-    sql: ${TABLE}.Balance ;;
-  }
-
-  dimension: check_number {
-    type: string
-    sql: ${TABLE}.Check_Number ;;
-  }
-
-  dimension_group: trans_on {
-    label: "Transaction on"
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    sql: ${TABLE}.Date ;;
-  }
-
-  dimension: description {
-    type: string
-    sql: ${TABLE}.Description ;;
-  }
-
-  dimension: fees {
-    type: string
-    sql: ${TABLE}.Fees ;;
-  }
-
-  dimension: memo {
-    type: string
-    sql: ${TABLE}.Memo ;;
-  }
-
-  dimension: transaction_number {
-    type: string
-    sql: ${TABLE}.Transaction_Number ;;
-    primary_key: yes
-  }
-
-  measure: count {
-    type: count
-    drill_fields: []
-  }
-
-  measure: avg_balance {
-    type:  average
-    sql: ${balance} ;;
-    value_format_name: usd
-    drill_fields: [balance, trans_on_date]
-  }
+  extends: [accounts_base]
 
   dimension: latest_balance {
-    sql: (SELECT a.Balance FROM ${TABLE} a WHERE Date = (SELECT min(b.Date) FROM ${TABLE} b)) ;;
+    sql: (SELECT a.Balance FROM ${reg_savings.SQL_TABLE_NAME} a WHERE Date = (SELECT max(b.Date) FROM ${reg_savings.SQL_TABLE_NAME} b)) ;;
+    value_format_name: usd
   }
 }

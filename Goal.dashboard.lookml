@@ -2,76 +2,8 @@
   title: Goal
   layout: newspaper
   elements:
-  - name: Savings Goal
-    title: Savings Goal
-    model: djjeffty
-    explore: sequence_cal
-    type: single_value
-    fields: [sequence_cal.generic_date_week, reg_savings.savings_goal, savtracker.sum_deposit]
-    filters:
-      reg_savings.goal: '30000'
-      sequence_cal.generic_date_week: after 2019/09/01
-    sorts: [sequence_cal.generic_date_week desc]
-    limit: 500
-    dynamic_fields: [{table_calculation: tomorrows_deposit, label: Tomorrow's Deposit,
-        expression: '(to_number(${reg_savings.savings_goal})-${running_balance} +100)
-          / diff_days(now(), to_date("2020"))', value_format: !!null '', value_format_name: usd,
-        is_disabled: false, _kind_hint: measure, _type_hint: number}, {table_calculation: running_balance,
-        label: Running Balance, expression: "19812 # starting balance\n+sum(${savtracker.sum_deposit})",
-        value_format: !!null '', value_format_name: usd, _kind_hint: measure, _type_hint: number}]
-    query_timezone: America/Los_Angeles
-    custom_color_enabled: true
-    custom_color: ''
-    show_single_value_title: true
-    single_value_title: Tomorrow's Deposit
-    show_comparison: true
-    comparison_type: value
-    comparison_reverse_colors: false
-    show_comparison_label: true
-    show_view_names: false
-    show_row_numbers: true
-    truncate_column_names: false
-    hide_totals: false
-    hide_row_totals: false
-    table_theme: editable
-    limit_displayed_rows: true
-    limit_displayed_rows_values:
-      show_hide: show
-      first_last: first
-      num_rows: '1'
-    enable_conditional_formatting: false
-    conditional_formatting_include_totals: false
-    conditional_formatting_include_nulls: false
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    plot_size_by_field: false
-    trellis: ''
-    stacking: normal
-    legend_position: center
-    series_types: {}
-    point_style: none
-    show_value_labels: false
-    label_density: 25
-    x_axis_scale: auto
-    y_axis_combined: true
-    show_null_points: false
-    interpolation: linear
-    hidden_fields: [savtracker.sum_deposit]
-    row: 16
-    col: 0
-    width: 5
-    height: 5
-  - name: All BF Accounts
-    title: All BF Accounts
+  - title: All BF Accounts
+    name: All BF Accounts
     model: djjeffty
     explore: sequence_cal
     type: looker_area
@@ -80,7 +12,6 @@
     fill_fields: [sequence_cal.generic_date_week]
     filters:
       sequence_cal.generic_date_week: after 2017/12/31
-      reg_savings.goal: '30000'
     sorts: [sequence_cal.generic_date_week desc]
     limit: 500
     dynamic_fields: [{table_calculation: personal_savings, label: Personal Savings,
@@ -142,12 +73,13 @@
     conditional_formatting_include_nulls: false
     hidden_fields: [reg_savings.avg_balance, djsavings.avg_balance, djchecking.avg_balance,
       reg_checking.avg_balance]
+    listen: {}
     row: 8
     col: 0
     width: 24
     height: 8
-  - name: Personal Checking YOY
-    title: Personal Checking YOY
+  - title: Personal Checking YOY
+    name: Personal Checking YOY
     model: djjeffty
     explore: sequence_cal
     type: looker_area
@@ -157,7 +89,6 @@
     fill_fields: [sequence_cal.generic_date_week_of_year, sequence_cal.generic_date_year]
     filters:
       sequence_cal.generic_date_week: after 2018/01/01
-      reg_savings.goal: '30000'
     sorts: [sequence_cal.generic_date_week_of_year desc, sequence_cal.generic_date_year
         desc]
     limit: 500
@@ -247,12 +178,13 @@
     conditional_formatting_include_nulls: false
     hidden_fields: [reg_savings.avg_balance, djsavings.avg_balance, djchecking.avg_balance,
       reg_checking.avg_balance, personal_savings, dj_savings, dj_checking]
+    listen: {}
     row: 0
     col: 0
     width: 10
     height: 4
-  - name: DJ Checking YOY
-    title: DJ Checking YOY
+  - title: DJ Checking YOY
+    name: DJ Checking YOY
     model: djjeffty
     explore: sequence_cal
     type: looker_area
@@ -262,7 +194,6 @@
     fill_fields: [sequence_cal.generic_date_week_of_year, sequence_cal.generic_date_year]
     filters:
       sequence_cal.generic_date_week: after 2018/01/01
-      reg_savings.goal: '30000'
     sorts: [sequence_cal.generic_date_week_of_year desc, sequence_cal.generic_date_year
         desc]
     limit: 500
@@ -360,8 +291,8 @@
     col: 0
     width: 10
     height: 4
-  - name: DJ Savings YOY
-    title: DJ Savings YOY
+  - title: DJ Savings YOY
+    name: DJ Savings YOY
     model: djjeffty
     explore: sequence_cal
     type: looker_area
@@ -371,7 +302,6 @@
     fill_fields: [sequence_cal.generic_date_week_of_year, sequence_cal.generic_date_year]
     filters:
       sequence_cal.generic_date_week: after 2018/01/01
-      reg_savings.goal: '30000'
     sorts: [sequence_cal.generic_date_week_of_year desc, sequence_cal.generic_date_year
         desc]
     limit: 500
@@ -466,12 +396,13 @@
     conditional_formatting_include_nulls: false
     hidden_fields: [reg_savings.avg_balance, djsavings.avg_balance, djchecking.avg_balance,
       reg_checking.avg_balance, personal_savings, personal_checking, dj_checking]
+    listen: {}
     row: 4
     col: 10
     width: 10
     height: 4
-  - name: Personal Savings YOY
-    title: Personal Savings YOY
+  - title: Personal Savings YOY
+    name: Personal Savings YOY
     model: djjeffty
     explore: sequence_cal
     type: looker_area
@@ -481,7 +412,6 @@
     fill_fields: [sequence_cal.generic_date_week_of_year, sequence_cal.generic_date_year]
     filters:
       sequence_cal.generic_date_week: after 2018/01/01
-      reg_savings.goal: '30000'
     sorts: [sequence_cal.generic_date_week_of_year desc, sequence_cal.generic_date_year
         desc]
     limit: 500
@@ -577,12 +507,13 @@
     conditional_formatting_include_nulls: false
     hidden_fields: [reg_savings.avg_balance, djsavings.avg_balance, djchecking.avg_balance,
       reg_checking.avg_balance, personal_checking, dj_checking, dj_savings]
+    listen: {}
     row: 0
     col: 10
     width: 10
     height: 4
-  - name: Reg S Bal
-    title: Reg S Bal
+  - title: Reg S Bal
+    name: Reg S Bal
     model: djjeffty
     explore: sequence_cal
     type: single_value
@@ -592,7 +523,6 @@
     fill_fields: [sequence_cal.generic_date_week_of_year, sequence_cal.generic_date_year]
     filters:
       sequence_cal.generic_date_week: after 2018/01/01
-      reg_savings.goal: '30000'
     sorts: [sequence_cal.generic_date_week_of_year desc, sequence_cal.generic_date_year
         desc 0]
     limit: 500
@@ -692,12 +622,13 @@
     conditional_formatting_include_nulls: false
     hidden_fields: [reg_savings.avg_balance, djsavings.avg_balance, djchecking.avg_balance,
       reg_checking.avg_balance, sequence_cal.generic_date_week_of_year]
+    listen: {}
     row: 2
     col: 20
     width: 4
     height: 2
-  - name: Regular Bal
-    title: Regular Bal
+  - title: Regular Bal
+    name: Regular Bal
     model: djjeffty
     explore: sequence_cal
     type: single_value
@@ -707,7 +638,6 @@
     fill_fields: [sequence_cal.generic_date_week_of_year, sequence_cal.generic_date_year]
     filters:
       sequence_cal.generic_date_week: after 2018/01/01
-      reg_savings.goal: '30000'
     sorts: [sequence_cal.generic_date_week_of_year desc, sequence_cal.generic_date_year
         desc 0]
     limit: 500
@@ -807,12 +737,13 @@
     conditional_formatting_include_nulls: false
     hidden_fields: [reg_savings.avg_balance, djsavings.avg_balance, djchecking.avg_balance,
       reg_checking.avg_balance, sequence_cal.generic_date_week_of_year]
+    listen: {}
     row: 0
     col: 20
     width: 4
     height: 2
-  - name: DJ C Bal
-    title: DJ C Bal
+  - title: DJ C Bal
+    name: DJ C Bal
     model: djjeffty
     explore: sequence_cal
     type: single_value
@@ -822,7 +753,6 @@
     fill_fields: [sequence_cal.generic_date_week_of_year, sequence_cal.generic_date_year]
     filters:
       sequence_cal.generic_date_week: after 2018/01/01
-      reg_savings.goal: '30000'
     sorts: [sequence_cal.generic_date_week_of_year desc, sequence_cal.generic_date_year
         desc 0]
     limit: 500
@@ -927,12 +857,13 @@
     conditional_formatting_include_nulls: false
     hidden_fields: [reg_savings.avg_balance, djsavings.avg_balance, djchecking.avg_balance,
       reg_checking.avg_balance, sequence_cal.generic_date_week_of_year]
+    listen: {}
     row: 4
     col: 20
     width: 4
     height: 2
-  - name: DJ S Bal
-    title: DJ S Bal
+  - title: DJ S Bal
+    name: DJ S Bal
     model: djjeffty
     explore: sequence_cal
     type: single_value
@@ -942,7 +873,6 @@
     fill_fields: [sequence_cal.generic_date_week_of_year, sequence_cal.generic_date_year]
     filters:
       sequence_cal.generic_date_week: after 2018/01/01
-      reg_savings.goal: '30000'
     sorts: [sequence_cal.generic_date_week_of_year desc, sequence_cal.generic_date_year
         desc 0]
     limit: 500
@@ -1047,6 +977,7 @@
     conditional_formatting_include_nulls: false
     hidden_fields: [reg_savings.avg_balance, djsavings.avg_balance, djchecking.avg_balance,
       reg_checking.avg_balance, sequence_cal.generic_date_week_of_year]
+    listen: {}
     row: 6
     col: 20
     width: 4
@@ -1167,5 +1098,75 @@
     listen: {}
     row: 16
     col: 19
+    width: 5
+    height: 5
+  - title: Tomorrow's Deposit
+    name: Tomorrow's Deposit
+    model: djjeffty
+    explore: sequence_cal
+    type: single_value
+    fields: [sequence_cal.generic_date_week, savtracker.sum_deposit, savings_goal_2019]
+    filters:
+      sequence_cal.generic_date_week: after 2019/09/01
+    sorts: [sequence_cal.generic_date_week desc]
+    limit: 500
+    dynamic_fields: [{table_calculation: tomorrows_deposit, label: Tomorrow's Deposit,
+        expression: '(${savings_goal_2019}-${running_balance} +100) / diff_days(now(),
+          to_date("2020"))', value_format: !!null '', value_format_name: usd, is_disabled: false,
+        _kind_hint: measure, _type_hint: number}, {table_calculation: running_balance,
+        label: Running Balance, expression: "19812 # starting balance\n+sum(${savtracker.sum_deposit})",
+        value_format: !!null '', value_format_name: usd, _kind_hint: measure, _type_hint: number},
+      {dimension: savings_goal_2019, label: Savings Goal 2019, expression: '30000',
+        value_format: !!null '', value_format_name: !!null '', _kind_hint: dimension,
+        _type_hint: number}]
+    query_timezone: America/Los_Angeles
+    custom_color_enabled: true
+    custom_color: ''
+    show_single_value_title: true
+    single_value_title: Tomorrow's Deposit
+    show_comparison: true
+    comparison_type: value
+    comparison_reverse_colors: false
+    show_comparison_label: true
+    show_view_names: false
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    table_theme: editable
+    limit_displayed_rows: true
+    limit_displayed_rows_values:
+      show_hide: show
+      first_last: first
+      num_rows: '1'
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: normal
+    legend_position: center
+    series_types: {}
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    show_null_points: false
+    interpolation: linear
+    hidden_fields: [savtracker.sum_deposit]
+    row: 16
+    col: 0
     width: 5
     height: 5

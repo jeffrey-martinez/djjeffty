@@ -15,6 +15,7 @@ view: savtracker {
   measure: sum_deposit {
     type:  sum
     sql:  ${deposit_just_now} ;;
+    drill_fields: [deposit_just_now, timestamp_date]
   }
 
   dimension: time_date_join {
