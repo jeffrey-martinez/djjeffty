@@ -1,5 +1,5 @@
-- dashboard: goal_udd
-  title: Goal (UDD)
+- dashboard: goal
+  title: Goal
   layout: newspaper
   elements:
   - title: All BF Accounts
