@@ -15,7 +15,7 @@ view: djtransactions {
 
   dimension: client_name {
     type: string
-    sql: ${TABLE}.client_name ;;
+    sql: ${TABLE}.client ;;
   }
 
   dimension_group: event_on {

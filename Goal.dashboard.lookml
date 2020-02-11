@@ -1,5 +1,5 @@
-- dashboard: goal
-  title: Goal
+- dashboard: goal_udd
+  title: Goal (UDD)
   layout: newspaper
   elements:
   - title: All BF Accounts
@@ -552,8 +552,8 @@
           mean(${reg_savings.avg_balance})), null)', value_format: !!null '', value_format_name: usd,
         is_disabled: true, _kind_hint: supermeasure, _type_hint: number}, {table_calculation: current_savings_balance,
         label: Current Savings Balance, expression: 'index( pivot_index(${reg_savings.avg_balance},
-          1), min(match(pivot_where(extract_years(${sequence_cal.generic_date_year})=2019,
-          ${reg_savings.avg_balance}), pivot_where(extract_years(${sequence_cal.generic_date_year})=2019,
+          1), min(match(pivot_where(extract_years(${sequence_cal.generic_date_year})=2020,
+          ${reg_savings.avg_balance}), pivot_where(extract_years(${sequence_cal.generic_date_year})=2020,
           ${reg_savings.avg_balance}))))', value_format: !!null '', value_format_name: usd,
         _kind_hint: supermeasure, _type_hint: number}]
     query_timezone: America/Los_Angeles
@@ -667,8 +667,8 @@
           mean(${reg_savings.avg_balance})), null)', value_format: !!null '', value_format_name: usd,
         is_disabled: true, _kind_hint: supermeasure, _type_hint: number}, {table_calculation: current_checking_balance,
         label: Current Checking Balance, expression: 'index( pivot_index(${reg_checking.avg_balance},
-          1), min(match(pivot_where(extract_years(${sequence_cal.generic_date_year})=2019,
-          ${reg_checking.avg_balance}), pivot_where(extract_years(${sequence_cal.generic_date_year})=2019,
+          1), min(match(pivot_where(extract_years(${sequence_cal.generic_date_year})=2020,
+          ${reg_checking.avg_balance}), pivot_where(extract_years(${sequence_cal.generic_date_year})=2020,
           ${reg_checking.avg_balance}))))', value_format: !!null '', value_format_name: usd,
         _kind_hint: supermeasure, _type_hint: number}]
     query_timezone: America/Los_Angeles
@@ -787,8 +787,8 @@
           ${reg_checking.avg_balance}))))', value_format: !!null '', value_format_name: usd,
         is_disabled: true, _kind_hint: supermeasure, _type_hint: number}, {table_calculation: current_dj_c_balance,
         label: Current DJ C Balance, expression: 'index( pivot_index(${djchecking.avg_balance},
-          1), min(match(pivot_where(extract_years(${sequence_cal.generic_date_year})=2019,
-          ${djchecking.avg_balance}), pivot_where(extract_years(${sequence_cal.generic_date_year})=2019,
+          1), min(match(pivot_where(extract_years(${sequence_cal.generic_date_year})=2020,
+          ${djchecking.avg_balance}), pivot_where(extract_years(${sequence_cal.generic_date_year})=2020,
           ${djchecking.avg_balance}))))', value_format: !!null '', value_format_name: usd,
         is_disabled: false, _kind_hint: supermeasure, _type_hint: number}]
     query_timezone: America/Los_Angeles
@@ -907,8 +907,8 @@
           ${reg_checking.avg_balance}))))', value_format: !!null '', value_format_name: usd,
         is_disabled: true, _kind_hint: supermeasure, _type_hint: number}, {table_calculation: current_dj_c_balance,
         label: Current DJ C Balance, expression: 'index( pivot_index(${djsavings.avg_balance},
-          1), min(match(pivot_where(extract_years(${sequence_cal.generic_date_year})=2019,
-          ${djsavings.avg_balance}), pivot_where(extract_years(${sequence_cal.generic_date_year})=2019,
+          1), min(match(pivot_where(extract_years(${sequence_cal.generic_date_year})=2020,
+          ${djsavings.avg_balance}), pivot_where(extract_years(${sequence_cal.generic_date_year})=2020,
           ${djsavings.avg_balance}))))', value_format: !!null '', value_format_name: usd,
         is_disabled: false, _kind_hint: supermeasure, _type_hint: number}]
     query_timezone: America/Los_Angeles
@@ -1037,8 +1037,8 @@
     col: 5
     width: 14
     height: 5
-  - title: Yield YTD
-    name: Yield YTD
+  - title: Yield All Time
+    name: Yield All Time
     model: Net
     explore: folio_export
     type: single_value
@@ -1111,7 +1111,7 @@
     sorts: [sequence_cal.generic_date_week desc]
     limit: 500
     dynamic_fields: [{table_calculation: tomorrows_deposit, label: Tomorrow's Deposit,
-        expression: '(${savings_goal_2019}-${running_balance} +100) / diff_days(now(),
+        expression: '(${savings_goal_2019}-${running_balance}) / diff_days(now(),
           to_date("2020"))', value_format: !!null '', value_format_name: usd, is_disabled: false,
         _kind_hint: measure, _type_hint: number}, {table_calculation: running_balance,
         label: Running Balance, expression: "19812 # starting balance\n+sum(${savtracker.sum_deposit})",
@@ -1166,6 +1166,7 @@
     show_null_points: false
     interpolation: linear
     hidden_fields: [savtracker.sum_deposit]
+    listen: {}
     row: 16
     col: 0
     width: 5
