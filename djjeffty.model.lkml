@@ -1,13 +1,10 @@
 connection: "djthesis"
 
 # include all the views
-include: "*.view"
-include: "*.dashboard"
-
-aggregate_awareness:  yes
+include: "/dj/*.view"
 
 # include all the dashboards
-# include: "*.dashboard"
+include: "*.dashboard"
 week_start_day: sunday
 
 # NOTE: please see https://looker.com/docs/r/sql/bigquery?version=5.0
@@ -44,35 +41,14 @@ explore: calendar {
   }
 }
 
-explore: sequence_cal {
-  label: "Accounts Master"
-  view_label: "Master Calendar"
-  join: djchecking {
-    view_label: "DJ Checking"
-    relationship: one_to_many
-    sql_on: ${djchecking.trans_on_raw} = ${sequence_cal.generic_date_raw}  ;;
-  }
-  join: djsavings {
-    view_label: "DJ Savings"
-    relationship: one_to_many
-    sql_on: ${djsavings.trans_on_raw} = ${sequence_cal.generic_date_raw}  ;;
-  }
-  join: reg_checking {
-    view_label: "Personal Checking"
-    relationship: one_to_many
-    sql_on: ${reg_checking.trans_on_raw} = ${sequence_cal.generic_date_raw}  ;;
-  }
-  join: reg_savings {
-    view_label: "Personal Savings"
-    relationship: one_to_many
-    sql_on: ${reg_savings.trans_on_raw} = ${sequence_cal.generic_date_raw}  ;;
-  }
-  join: savtracker {
-    view_label: "Savings Tracker"
-    relationship: one_to_many
-    sql_on: ${savtracker.time_date_join} = ${sequence_cal.generic_date_raw} ;;
+explore: inquiries {
+  join: contract_responses {
+    type: full_outer
+    sql_on: ${inquiries.event_raw} = ${contract_responses.date_of_event_raw} ;;
+    relationship: many_to_one
   }
 }
+
 
 # explore: library {
 #   join: jan_six_seventeen {
@@ -83,9 +59,9 @@ explore: sequence_cal {
 # }
 
 
-explore: test_transactions {
-  join: test_trans_dt {
-    sql_on: 1=1 ;;
-    relationship: many_to_many
-  }
-}
+# explore: test_transactions {
+#   join: test_trans_dt {
+#     sql_on: 1=1 ;;
+#     relationship: many_to_many
+#   }
+# }

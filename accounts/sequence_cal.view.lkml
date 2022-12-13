@@ -21,6 +21,18 @@ view: sequence_cal {
     type: time
     datatype: date
     sql: ${TABLE}.generic_date ;;
+    timeframes: [
+      raw,
+      date,
+      day_of_month,
+      day_of_week,
+      day_of_week_index,
+      week,
+      week_of_year,
+      month,
+      quarter,
+      year
+    ]
   }
 
   set: detail {

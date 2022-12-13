@@ -86,15 +86,23 @@ view: contract_responses {
       date,
       week,
       month,
+      month_name,
       quarter,
       year
     ]
     sql: ${TABLE}.Timestamp ;;
   }
 
-  dimension: total_cost_of_service {
+  dimension: cost_of_service {
     type: string
-    sql: ${TABLE}.Total_Cost_of_Service ;;
+    sql: SAFE_CAST(${TABLE}.Total_Cost_of_Service AS INT64) ;;
+  }
+
+  dimension: obs_cost_of_service {
+    group_label: "Safe $ fields"
+    type: string
+    sql: SAFE_CAST(${TABLE}.Total_Cost_of_Service AS INT64) / 999 ;;
+    value_format_name: percent_2
   }
 
   dimension: venue {
@@ -128,6 +136,36 @@ view: contract_responses {
   measure: count {
     type: count
     drill_fields: [purchaser_name]
+  }
+
+  measure: cost_total {
+    group_label: "NSFW"
+    type: sum
+    sql: ${cost_of_service} ;;
+    value_format_name: usd
+  }
+
+
+  measure: average_cost {
+    group_label: "NSFW"
+    type: average
+    sql: ${cost_of_service} ;;
+    value_format_name: usd
+  }
+
+  measure: obs_cost_total {
+    group_label: "Safe $ Fields"
+    type: sum
+    sql: ${obs_cost_of_service} ;;
+    value_format_name: percent_2
+  }
+
+
+  measure: obs_average_cost {
+    group_label: "Safe $ Fields"
+    type: average
+    sql: ${obs_cost_of_service} ;;
+    value_format_name: percent_2
   }
 }
 

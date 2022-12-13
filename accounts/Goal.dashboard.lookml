@@ -4,7 +4,7 @@
   elements:
   - title: All BF Accounts
     name: All BF Accounts
-    model: djjeffty
+    model: banking
     explore: sequence_cal
     type: looker_area
     fields: [sequence_cal.generic_date_week, reg_savings.avg_balance, djsavings.avg_balance,
@@ -80,7 +80,7 @@
     height: 8
   - title: Personal Checking YOY
     name: Personal Checking YOY
-    model: djjeffty
+    model: banking
     explore: sequence_cal
     type: looker_area
     fields: [reg_savings.avg_balance, djsavings.avg_balance, djchecking.avg_balance,
@@ -185,7 +185,7 @@
     height: 4
   - title: DJ Checking YOY
     name: DJ Checking YOY
-    model: djjeffty
+    model: banking
     explore: sequence_cal
     type: looker_area
     fields: [reg_savings.avg_balance, djsavings.avg_balance, djchecking.avg_balance,
@@ -293,7 +293,7 @@
     height: 4
   - title: DJ Savings YOY
     name: DJ Savings YOY
-    model: djjeffty
+    model: banking
     explore: sequence_cal
     type: looker_area
     fields: [reg_savings.avg_balance, djsavings.avg_balance, djchecking.avg_balance,
@@ -403,7 +403,7 @@
     height: 4
   - title: Personal Savings YOY
     name: Personal Savings YOY
-    model: djjeffty
+    model: banking
     explore: sequence_cal
     type: looker_area
     fields: [reg_savings.avg_balance, djsavings.avg_balance, djchecking.avg_balance,
@@ -514,7 +514,7 @@
     height: 4
   - title: Reg S Bal
     name: Reg S Bal
-    model: djjeffty
+    model: banking
     explore: sequence_cal
     type: single_value
     fields: [reg_savings.avg_balance, djsavings.avg_balance, djchecking.avg_balance,
@@ -629,7 +629,7 @@
     height: 2
   - title: Regular Bal
     name: Regular Bal
-    model: djjeffty
+    model: banking
     explore: sequence_cal
     type: single_value
     fields: [reg_savings.avg_balance, djsavings.avg_balance, djchecking.avg_balance,
@@ -744,7 +744,7 @@
     height: 2
   - title: DJ C Bal
     name: DJ C Bal
-    model: djjeffty
+    model: banking
     explore: sequence_cal
     type: single_value
     fields: [reg_savings.avg_balance, djsavings.avg_balance, djchecking.avg_balance,
@@ -864,7 +864,7 @@
     height: 2
   - title: DJ S Bal
     name: DJ S Bal
-    model: djjeffty
+    model: banking
     explore: sequence_cal
     type: single_value
     fields: [reg_savings.avg_balance, djsavings.avg_balance, djchecking.avg_balance,
@@ -1102,7 +1102,7 @@
     height: 5
   - title: Tomorrow's Deposit
     name: Tomorrow's Deposit
-    model: djjeffty
+    model: banking
     explore: sequence_cal
     type: single_value
     fields: [sequence_cal.generic_date_week, savtracker.sum_deposit, savings_goal_2019]
