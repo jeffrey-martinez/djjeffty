@@ -1,6 +1,10 @@
 view: djtransactions {
   sql_table_name: IKYL.djtransactions ;;
 
+  parameter: tracker_date {
+    type: date
+  }
+
   dimension: id {
     primary_key: yes
     type: number
@@ -24,7 +28,7 @@ view: djtransactions {
     sql:
     ${TABLE}.event_on
     ;;
-    timeframes: [raw, date, day_of_week, week, month, month_name, year]
+    timeframes: [raw, date, day_of_week, week, month, day_of_year, week_of_year, month_name, year]
   }
 
   dimension: past_event {
@@ -67,7 +71,7 @@ view: djtransactions {
     type: time
     datatype: date
     sql: ${TABLE}.transaction_on ;;
-    timeframes: [raw, date, day_of_week, quarter_of_year, week, month, month_name, year]
+    timeframes: [raw, date, day_of_week, day_of_year, week_of_year, quarter_of_year, week, month, month_name, year]
   }
 
   measure: count {
@@ -76,9 +80,30 @@ view: djtransactions {
   }
 
   measure: total_amount {
+    label: "Amount Received"
     type: sum
     sql: ${amount} ;;
     value_format_name: usd_0
+    drill_fields: [id, client_name, amount]
+  }
+
+  measure: paid_amount_custom {
+    type: sum
+    sql: CASE WHEN ${transaction_on_date} < DATE({% parameter tracker_date %}) THEN ${amount}
+              ELSE 0 END ;;
+    value_format_name: usd_0
+  }
+
+  measure: paid_amount_DOY {
+    type: sum
+    sql: CASE WHEN ${transaction_on_day_of_year} < EXTRACT(DAYOFYEAR FROM {% parameter tracker_date %}) THEN ${amount}
+      ELSE 0 END ;;
+    value_format_name: usd_0
+  }
+
+  measure: count_names {
+    type: count_distinct
+    sql: ${client_name} ;;
     drill_fields: [id, client_name, amount]
   }
 }

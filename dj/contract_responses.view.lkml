@@ -135,14 +135,22 @@ view: contract_responses {
 
   measure: count {
     type: count
-    drill_fields: [purchaser_name]
+    drill_fields: [purchaser_name, date_of_event_date]
   }
 
   measure: cost_total {
+    label: "Contracted Cost Total"
     group_label: "NSFW"
     type: sum
     sql: ${cost_of_service} ;;
     value_format_name: usd
+  }
+
+  measure: remaining_due {
+    group_label: "NSFW"
+    value_format_name: usd
+    type: number
+    sql: ${cost_total} - ${djtransactions.total_amount};;
   }
 
 

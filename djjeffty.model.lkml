@@ -26,7 +26,7 @@ explore: no_dupelibrary {
     }
   }
 
-# explore: djtransactions {}
+explore: djtransactions {}
 
 explore: calendar {
   join: contract_responses{
@@ -42,6 +42,7 @@ explore: calendar {
 }
 
 explore: inquiries {
+  fields: [ALL_FIELDS*, -contract_responses.remaining_due]
   join: contract_responses {
     type: full_outer
     sql_on: ${inquiries.event_raw} = ${contract_responses.date_of_event_raw} ;;
