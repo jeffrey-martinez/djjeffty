@@ -35,4 +35,10 @@ explore: sequence_cal {
     relationship: one_to_many
     sql_on: ${savtracker.time_date_join} = ${sequence_cal.generic_date_raw} ;;
   }
+
+  join: schwab_inv {
+    view_label: "Schwab Investments"
+    relationship: one_to_many
+    sql_on: ${schwab_inv.pk} = ${sequence_cal.generic_date_raw} ;;
+  }
 }

@@ -14,10 +14,17 @@ view: schwab_inv {
     convert_tz: no
     datatype: date
     sql: ${TABLE}.Date ;;
+    hidden: yes
   }
   dimension: total_value {
     type: number
     sql: ${TABLE}.Total_value ;;
+  }
+  measure: avg_value {
+    type:  average
+    sql: ${total_value} ;;
+    value_format_name: usd
+    drill_fields: [total_value, date_date]
   }
   measure: count {
     type: count
